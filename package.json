@@ -1,0 +1,24 @@
+{
+  "name": "paperspace-node-project",
+  "version": "1.0.0",
+  "description": "crud restful endpoints for a record creator service",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demesvardestin/paperspace-node.git"
+  },
+  "author": "Demesvar D. Destin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demesvardestin/paperspace-node/issues"
+  },
+  "homepage": "https://github.com/demesvardestin/paperspace-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5"
+  }
+}

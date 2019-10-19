@@ -1,0 +1,37 @@
+<h1>Paperspace Node Challenge</h1>
+
+<section id="new-record-form">
+    <h4>Add a new record</h4>
+    <hr>
+    <form action="/addresses" method="post">
+        <div class="field">
+            <input type="text" class="form-control" name="name" placeholder="record name">
+        </div>
+        
+        <div class="field">
+            <input type="text" class="form-control" name="street" placeholder="street">
+        </div>
+        
+        <div class="field">
+            <input type="text" class="form-control" name="city" placeholder="city">
+        </div>
+        
+        <div class="field">
+            <input type="text" class="form-control" name="state" placeholder="state">
+        </div>
+        
+        <div class="field">
+            <input type="text" class="form-control" name="country" placeholder="country">
+        </div>
+        
+        <div class="actions">
+            <input type="submit" value="Add record">
+        </div>
+    </form>
+</section>
+
+<section id="view-records">
+    <a type="button" href="/addresses">
+        View all records
+    </a>
+</section>

@@ -12,6 +12,12 @@ module.exports = (app) => {
 
     // Update a address with addressId
     app.put('/addresses/:addressId', addressController.update);
+    
+    // html update
+    app.post('/update_address/:addressId', addressController.updateAddress);
+    
+    // html delete
+    app.post('/delete_address/:addressId', addressController.deleteAddress);
 
     // Delete a address with addressId
     app.delete('/addresses/:addressId', addressController.delete);

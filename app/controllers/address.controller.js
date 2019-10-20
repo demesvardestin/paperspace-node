@@ -1,23 +1,24 @@
+const bodyParser = require('body-parser');
 const Address = require('../models/address.model.js');
 
 // Create and Save a new address
 exports.create = (req, res) => {
     if(!req.body) {
         return res.status(400).send({
-            message: `${req.params}`
+            message: `${req.body}`
         });
     }
     
     const address = new Address({
         name: req.body.name, 
         street: req.body.street,
-        city: req.body.street,
+        city: req.body.city,
         state: req.body.state,
         country: req.body.country
     });
     
     address.save().then(data => {
-        res.send(data);
+        res.redirect('/addresses');
     }).catch(err => {
         res.status(500).send({
             message: err.message || "An error occurred."
@@ -29,7 +30,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Address.find()
     .then(addresses => {
-        res.send(addresses);
+        res.render('index', { addresses: addresses });
     }).catch(err => {
         res.status(500).send({
             message: err.message || "An error occurred."
@@ -41,20 +42,28 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     Address.findById(req.params.addressId)
     .then(address => {
-        if(!address) {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.addressId
-            });            
-        }
-        res.send(address);
+        res.render('show', { address: address });
     }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.addressId
-            });                
-        }
         return res.status(500).send({
-            message: "Error retrieving note with id " + req.params.addressId
+            message: err
+        });
+    });
+};
+
+// update via html form
+exports.updateAddress = (req, res) => {
+    Address.findByIdAndUpdate(req.params.addressId, {
+        name: req.body.name,
+        street: req.body.street,
+        city: req.body.city,
+        state: req.body.state,
+        country: req.body.country
+    }, { new: true })
+    .then(address => {
+        res.redirect(`/addresses/${address.id}`);
+    }).catch(err => {
+        return res.status(500).send({
+            message: err
         });
     });
 };
@@ -77,20 +86,22 @@ exports.update = (req, res) => {
         country: req.body.country
     }, { new: true })
     .then(address => {
-        if(!address) {
-            return res.status(404).send({
-                message: "Record not found with id " + req.params.addressId
-            });
-        }
-        res.send(address);
+        res.redirect(`/addresses/${address.id}`);
     }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "Record not found with id " + req.params.addressId
-            });                
-        }
         return res.status(500).send({
-            message: "Error updating record with id " + req.params.addressId
+            message: err
+        });
+    });
+};
+
+// html delete
+exports.deleteAddress = (req, res) => {
+    Address.findByIdAndRemove(req.params.addressId)
+    .then(address => {
+        res.redirect('/addresses');
+    }).catch(err => {
+        return res.status(500).send({
+            message: err
         });
     });
 };
@@ -99,20 +110,10 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     Address.findByIdAndRemove(req.params.addressId)
     .then(address => {
-        if(!address) {
-            return res.status(404).send({
-                message: "Address not found with id " + req.params.addressId
-            });
-        }
         res.send({message: "Address deleted successfully!"});
     }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
-                message: "Address not found with id " + req.params.addressId
-            });                
-        }
         return res.status(500).send({
-            message: "Could not delete note with id " + req.params.addressId
+            message: err
         });
     });
 };

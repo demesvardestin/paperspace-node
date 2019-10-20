@@ -1,0 +1,75 @@
+html
+  head
+    title= title
+  body
+    h2= 'Paperspace Node Challenge'
+    section
+        h3= 'All records ' + `(${addresses.length})`
+        if addresses.length > 0
+            each val in addresses
+                div
+                    a(
+                        href='/addresses/' + val.id
+                    )
+                        span= [val.name, val.street, val.city, val.state, val.country].join(', ')
+        else
+            div
+                p= "You haven't created a record yet"
+    hr
+    h3= 'Add a new record'
+    form(
+            action='/addresses'
+            method='post'
+        )
+        div(
+            class='field'
+        )
+            input(
+                type='text'
+                class='form-control'
+                name='name'
+                placeholder='Record name'
+            )
+        div(
+            class='field'
+        )
+            input(
+                type='text'
+                class='form-control'
+                name='street'
+                placeholder='Street'
+            )
+        div(
+            class='field'
+        )
+            input(
+                type='text'
+                class='form-control'
+                name='city'
+                placeholder='City'
+            )
+        div(
+            class='field'
+        )
+            input(
+                type='text'
+                class='form-control'
+                name='state'
+                placeholder='State'
+            )
+        div(
+            class='field'
+        )
+            input(
+                type='text'
+                class='form-control'
+                name='country'
+                placeholder='Country'
+            )
+        div(
+            class='field'
+        )
+            input(
+                type='submit'
+                value='Add record'
+            )

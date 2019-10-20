@@ -1,12 +1,9 @@
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
 const app = express();
 
-require('./app/routes/app.routes.js')(app);
-app.use(express.static(__dirname + '/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -14,7 +11,8 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
@@ -22,8 +20,12 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
+require('./app/routes/app.routes.js')(app);
+
+app.set('views', './views');
+app.set('view engine', 'pug');
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+    res.render('index', { title: 'Paperspace Node' })
 });
 
 // listen for requests

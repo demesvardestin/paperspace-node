@@ -1,0 +1,78 @@
+h3= 'ID = ' + address.id
+p= [address.name, address.street, address.city, address.state, address.country].join(', ')
+
+form(
+    action='/update_address/' + address.id
+    method='post'
+)
+    div(
+        class='field'
+    )
+        input(
+            type='text'
+            class='form-control'
+            name='name'
+            placeholder='Record name'
+            value= address.name
+        )
+    div(
+        class='field'
+    )
+        input(
+            type='text'
+            class='form-control'
+            name='street'
+            placeholder='Street'
+            value= address.street
+        )
+    div(
+        class='field'
+    )
+        input(
+            type='text'
+            class='form-control'
+            name='city'
+            placeholder='City'
+            value= address.city
+        )
+    div(
+        class='field'
+    )
+        input(
+            type='text'
+            class='form-control'
+            name='state'
+            placeholder='State'
+            value= address.state
+        )
+    div(
+        class='field'
+    )
+        input(
+            type='text'
+            class='form-control'
+            name='country'
+            placeholder='Country'
+            value= address.country
+        )
+    div(
+        class='field'
+    )
+        input(
+            type='submit'
+            value='Update record'
+        )
+
+div
+    form(
+        method='post'
+        action='/delete_address/' + address.id
+    )
+        input(
+            type='submit'
+            value='Delete this record'
+        )
+div
+    a(
+        href='/addresses'
+    ) VIEW ALL RECORDS

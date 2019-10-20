@@ -1,0 +1,68 @@
+html
+  head
+    title= title
+  body
+    h1= 'Paperspace Node Challenge'
+    section
+        h4= 'Add a new record'
+        hr
+        form(
+            action='/addresses'
+            method='post'
+        )
+            div(
+                class='field'
+            )
+                input(
+                    type='text'
+                    class='form-control'
+                    name='name'
+                    placeholder='Record name'
+                )
+            div(
+                class='field'
+            )
+                input(
+                    type='text'
+                    class='form-control'
+                    name='street'
+                    placeholder='Street'
+                )
+            div(
+                class='field'
+            )
+                input(
+                    type='text'
+                    class='form-control'
+                    name='city'
+                    placeholder='City'
+                )
+            div(
+                class='field'
+            )
+                input(
+                    type='text'
+                    class='form-control'
+                    name='state'
+                    placeholder='State'
+                )
+            div(
+                class='field'
+            )
+                input(
+                    type='text'
+                    class='form-control'
+                    name='country'
+                    placeholder='Country'
+                )
+            div(
+                class='field'
+            )
+                input(
+                    type='submit'
+                    value='Add record'
+                )
+    section
+        a(
+            href='/addresses'
+        ) View all records

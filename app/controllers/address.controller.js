@@ -30,7 +30,32 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Address.find()
     .then(addresses => {
-        res.render('index', { addresses: addresses });
+        let tempStates = addresses.map(a => a.state);
+        let tempCountries = addresses.map(a => a.country);
+        let states = [];
+        let countries = [];
+        
+        tempStates.forEach(s => {
+            if (!states.includes(s)) {
+        		states.push(s);
+            }
+        });
+        
+        tempCountries.forEach(c => {
+            if (!countries.includes(c)) {
+        		countries.push(c);
+            }
+        });
+        
+        if (req.query.state) {
+            addresses = addresses.filter(a => a.state == req.query.state);
+        }
+        
+        if (req.query.country) {
+            addresses = addresses.filter(a => a.country == req.query.country);
+        }
+        
+        res.render('index', { addresses: addresses, states: states, countries: countries });
     }).catch(err => {
         res.status(500).send({
             message: err.message || "An error occurred."
@@ -114,6 +139,18 @@ exports.delete = (req, res) => {
     }).catch(err => {
         return res.status(500).send({
             message: err
+        });
+    });
+};
+
+exports.findByState = (req, res) => {
+    let state = req.params.state;
+    Address.find({ state: /`${state}`/i })
+    .then(addresses => {
+        res.render('index', { addresses: addresses, state });
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "An error occurred."
         });
     });
 };

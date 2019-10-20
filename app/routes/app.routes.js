@@ -1,6 +1,9 @@
 module.exports = (app) => {
     const addressController = require('../controllers/address.controller.js');
-
+    
+    // get records by state
+    app.get('/state/:state', addressController.findByState);
+    
     // Create a new address
     app.post('/addresses', addressController.create);
 

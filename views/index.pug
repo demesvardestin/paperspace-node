@@ -5,6 +5,7 @@ html
     h2= 'Paperspace Node Challenge'
     section
         h3= 'All records ' + `(${addresses.length})`
+        
         if addresses.length > 0
             each val in addresses
                 div
@@ -15,6 +16,24 @@ html
         else
             div
                 p= "You haven't created a record yet"
+        
+        div
+            h3= 'Filter by state'
+        each s in states
+            div
+                a(
+                    href='/addresses?state=' + s
+                )
+                    span= s
+                    
+        div
+            h3= 'Filter by country'
+        each c in countries
+            div
+                a(
+                    href='/addresses?country=' + c
+                )
+                    span= c
     hr
     h3= 'Add a new record'
     form(

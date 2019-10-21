@@ -73,4 +73,4 @@ To run those tests:
 - Install [Mocha](https://mochajs.org/#installation "Mocha") with ```npm install --save-dev mocha```
 - Install [Chai](https://www.chaijs.com/guide/installation/ "Chai") with ```npm install chai```
 
-Then run ```npm run test``
+Then run ```npm run test```

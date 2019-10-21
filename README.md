@@ -55,4 +55,7 @@ need to have MongoDB installed on your machine. You can do so by:
 - Run the necessary installation commands while inside the project folder
 
 After verifying that Mongo is up and running, boot up the server with
-```node server.js```.
+```node server.js```
+
+Note: if your machine uses a port other than 3000 (such as 8080), you should
+update the ```server.js``` file to reflect that difference.

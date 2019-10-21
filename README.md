@@ -34,10 +34,21 @@ yet found a way around it.
 
 ## Installation and Testing
 
-First, you will need to clone this repository (make sure that you clone it at
-the root of your environment, and not in another folder).
+Assuming you already have npm and node installed, you will firstly need to clone
+this repository (make sure that you clone it at the root of your environment,
+and not in another folder).
 
-Then you will need to have MongoDB installed on your machine. You can do so by:
+NOTE: If you don't have npm or node intalled, you can use
+the following links:
+
+- [npm installation page](https://www.npmjs.com/get-npm "npm installation page")
+- [nodejs installation page](https://nodejs.org/en/download/ "nodejs installation page")
+
+Ideally, you should have Node v10 and up (the version I used on my machine to
+build the project).
+
+Once you've completed all installations, and have cloned the project, you will
+need to have MongoDB installed on your machine. You can do so by:
 
 - visiting the [MongoDB installation page](https://docs.mongodb.com/manual/installation/ "MongoDB installation page")
 - choosing the option for your particular system

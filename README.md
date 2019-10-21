@@ -35,6 +35,6 @@ yet found a way around it.
 
 After cloning this project, you will need to have MongoDB installed on your machine.
 You can do so by visiting the
-![https://docs.mongodb.com/manual/installation/](https://docs.mongodb.com/manual/installation/ "MongoDB installation page")
+[MongoDB installation page](https://docs.mongodb.com/manual/installation/ "MongoDB installation page")
 and choosing the option for your particular system. After verifying that it's up
 and running, you can boot up the server with ```node server.js```.

@@ -25,7 +25,7 @@ require('./app/routes/app.routes.js')(app);
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.get('/*', (req, res) => {
-    res.render('index', { title: 'Paperspace Node' })
+    res.redirect('/addresses');
 });
 
 // listen for requests

@@ -14,7 +14,8 @@ script.
             suggestionBox.innerHTML = '';
             e.forEach(c => {
                 let p = document.createElement('p');
-                p.setAttribute('onclick', 'fillCountryInput(this.textContent)');
+                p.setAttribute('onclick', 'fillCountryInput(this)');
+                p.setAttribute('id', c.alpha3Code);
                 p.style.paddingTop = '10px';
                 p.style.paddingBottom = '10px';
                 p.style.margin = '0';
@@ -27,11 +28,11 @@ script.
         });
     }
     
-    fillCountryInput = (value) => {
+    fillCountryInput = (elem) => {
         const suggestionBox = document.querySelector('#country-suggestions');
         let countryInput = document.querySelector('#country-input');
         
-        countryInput.value = value;
+        countryInput.value = elem.textContent;
         
         hideSuggestionBox(suggestionBox);
     }

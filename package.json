@@ -4,7 +4,7 @@
   "description": "crud restful endpoints for a record creator service",
   "main": "index.js",
   "scripts": {
-    "test": "npm run"
+    "test": "mocha --require babel-register tests/*.js --exit"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,15 @@
   },
   "homepage": "https://github.com/demesvardestin/paperspace-node#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "express": "^4.17.1",
+    "mocha": "^6.2.2",
     "mongoose": "^5.7.5",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "request": "^2.88.0"
   }
 }

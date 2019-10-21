@@ -22,7 +22,19 @@ database. Record attributes are
 - state
 - country
 
-## Installation and Testing
+
+## Issues
+
+The provided REST API service to retrieve state information for a given country, does not
+seem to work. I've tried various means of polling the endpoint, including
+[Request](https://github.com/request/request "Request"), [Axios](https://github.com/axios/axios "Axios"),
+and the built-in [http module](https://nodejs.org/api/http.html "http module"),
+but nothing seems to work. It appears the endpoint itself is not working.
+I've looked elsewhere for an alternative, but was unable to find
+a free service. So for the time being, this app does not validate a country's state
+(although I did provide a filter-as-you-type functionality for listing available countries).
+
+## Installation and client testing
 
 Assuming you already have npm and node installed, you will firstly need to clone
 this repository (make sure that you clone it at the root of your environment,
@@ -44,8 +56,17 @@ need to have MongoDB installed on your machine. You can do so by:
 - choosing the option for your particular system
 - Run the necessary installation commands while inside the project folder
 
-After verifying that Mongo is up and running, boot up the server with
-```node server.js```
+After verifying that Mongo is up and running, install all dependencies with
+```npm install```, then boot up the server with ```node server.js```.
 
 Note: if your machine uses a port other than 3000 (such as 8080), you should
 update the ```server.js``` file to reflect that difference.
+
+## Unit tests
+
+I provided a couple of unit tests on the controller actions (using chai & mocha).
+To run those tests:
+- Install [Mocha](https://mochajs.org/#installation "Mocha") with ```npm install --save-dev mocha```
+- Install [Chai](https://www.chaijs.com/guide/installation/ "Chai") with ```npm install chai```
+
+Then run ```npm run test``

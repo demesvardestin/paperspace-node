@@ -34,6 +34,7 @@ exports.findAll = (req, res) => {
         let tempCountries = addresses.map(a => a.country);
         let states = [];
         let countries = [];
+        let filterPresent = false;
         
         tempStates.forEach(s => {
             if (!states.includes(s)) {
@@ -47,6 +48,10 @@ exports.findAll = (req, res) => {
             }
         });
         
+        if (req.query.state || req.query.country) {
+            filterPresent = true;
+        }
+        
         if (req.query.state) {
             addresses = addresses.filter(a => a.state == req.query.state);
         }
@@ -55,7 +60,7 @@ exports.findAll = (req, res) => {
             addresses = addresses.filter(a => a.country == req.query.country);
         }
         
-        res.render('index', { addresses: addresses, states: states, countries: countries });
+        res.render('index', { addresses: addresses, states: states, countries: countries, filter: filterPresent });
     }).catch(err => {
         res.status(500).send({
             message: err.message || "An error occurred."
@@ -139,18 +144,6 @@ exports.delete = (req, res) => {
     }).catch(err => {
         return res.status(500).send({
             message: err
-        });
-    });
-};
-
-exports.findByState = (req, res) => {
-    let state = req.params.state;
-    Address.find({ state: /`${state}`/i })
-    .then(addresses => {
-        res.render('index', { addresses: addresses, state });
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "An error occurred."
         });
     });
 };

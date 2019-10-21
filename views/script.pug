@@ -1,0 +1,44 @@
+script.
+    checkCountry = (elem) => {
+        let suggestionBox = document.querySelector('#country-suggestions');
+        let value = elem.value;
+        
+        if (value == '') {
+            hideSuggestionBox(suggestionBox);
+        }
+        
+        suggestionBox.setAttribute('style', 'display: block !important');
+        suggestionBox.style.width = elem.offsetWidth;
+        
+        $.get(`https://restcountries.eu/rest/v2/name/${value}`).done(e => {
+            suggestionBox.innerHTML = '';
+            e.forEach(c => {
+                let p = document.createElement('p');
+                p.setAttribute('onclick', 'fillCountryInput(this.textContent)');
+                p.style.paddingTop = '10px';
+                p.style.paddingBottom = '10px';
+                p.style.margin = '0';
+                p.style.borderBottom = '1px solid #e7e7e9';
+                p.style.cursor = 'pointer';
+                p.innerHTML = c.name;
+                
+                suggestionBox.appendChild(p);
+            });
+        });
+    }
+    
+    fillCountryInput = (value) => {
+        const suggestionBox = document.querySelector('#country-suggestions');
+        let countryInput = document.querySelector('#country-input');
+        
+        countryInput.value = value;
+        
+        hideSuggestionBox(suggestionBox);
+    }
+    
+    hideSuggestionBox = (box=null) => {
+        box = box || document.querySelector('#country-suggestions');
+        
+        box.innerHTML = '';
+        box.setAttribute('style', 'display: none !important');
+    }

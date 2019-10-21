@@ -1,14 +1,40 @@
-         ___        ______     ____ _                 _  ___  
-        / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
-       / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
-      / ___ \ V  V /  ___) | | |___| | (_) | |_| | (_| |\__, |
-     /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
- ----------------------------------------------------------------- 
+## Paperspace Node Challenge
+![paperspace-node-challenge](https://github.com/demesvardestin/paperspace-node/raw/master/public/assets/paperspace_node_challenge.png "paperspace-node-challenge")
+
+This is a small, minimal client that interacts with a RESTful set of API endpoints
+built with NodeJS to perform CRUD actions on a ```Record``` model.
+
+## Stack
+
+- NodeJS
+- ExpressJS
+- Pug
+- Bootstrap
+
+## Purpose
+
+The idea is to be able to create, retrieve, update, and delete records from the
+database. Record attributes are
+
+- name
+- street
+- city
+- state
+- country
 
 
-Hi there! Welcome to AWS Cloud9!
+## Issues
 
-To get started, create some files, play with the terminal,
-or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
+The feature allowing retrievial of cities/states associated with a particular
+country is currently not working. Given that the client would run on an HTTPS
+page, an external API url can only be reached with a jQuery ```$.get()``` request IF
+the url is also over HTTPS. Otherwise, the request will be rejected. I have not
+yet found a way around it.
 
-Happy coding!
+## Installation and Testing
+
+After cloning this project, you will need to have MongoDB installed on your machine.
+You can do so by visiting the
+![https://docs.mongodb.com/manual/installation/](https://docs.mongodb.com/manual/installation/ "MongoDB installation page")
+and choosing the option for your particular system. After verifying that it's up
+and running, you can boot up the server with ```node server.js```.

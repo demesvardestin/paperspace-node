@@ -1,94 +1,133 @@
+include script
+include stylesheet
+
 html
   head
     title= title
+    link(
+        rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous"
+    )
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+    )
+    script(
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    )
   body
-    h2= 'Paperspace Node Challenge'
-    section
-        h3= 'All records ' + `(${addresses.length})`
-        
-        if addresses.length > 0
-            each val in addresses
-                div
-                    a(
-                        href='/addresses/' + val.id
-                    )
-                        span= [val.name, val.street, val.city, val.state, val.country].join(', ')
-        else
-            div
-                p= "You haven't created a record yet"
-        
-        div
-            h3= 'Filter by state'
-        each s in states
-            div
-                a(
-                    href='/addresses?state=' + s
-                )
-                    span= s
+    section.container
+        div.row
+            div.col-md-12
+                h2.text-center= 'Paperspace Node Challenge'
+                hr
+        div.row
+            div.col-md-6
+                section
+                    h5= 'All records ' + `(${addresses.length})`
                     
-        div
-            h3= 'Filter by country'
-        each c in countries
-            div
-                a(
-                    href='/addresses?country=' + c
-                )
-                    span= c
-    hr
-    h3= 'Add a new record'
-    form(
-            action='/addresses'
-            method='post'
-        )
-        div(
-            class='field'
-        )
-            input(
-                type='text'
-                class='form-control'
-                name='name'
-                placeholder='Record name'
-            )
-        div(
-            class='field'
-        )
-            input(
-                type='text'
-                class='form-control'
-                name='street'
-                placeholder='Street'
-            )
-        div(
-            class='field'
-        )
-            input(
-                type='text'
-                class='form-control'
-                name='city'
-                placeholder='City'
-            )
-        div(
-            class='field'
-        )
-            input(
-                type='text'
-                class='form-control'
-                name='state'
-                placeholder='State'
-            )
-        div(
-            class='field'
-        )
-            input(
-                type='text'
-                class='form-control'
-                name='country'
-                placeholder='Country'
-            )
-        div(
-            class='field'
-        )
-            input(
-                type='submit'
-                value='Add record'
-            )
+                    if addresses.length > 0
+                        each val in addresses
+                            div
+                                a(
+                                    href='/addresses/' + val.id
+                                )
+                                    span= [val.name, val.street, val.city, val.state, val.country].join(', ')
+                    else
+                        div
+                            p= "You haven't created a record yet"
+                    hr
+                    
+                    div
+                        h5= 'Filter by state'
+                    each s in states
+                        div
+                            a(
+                                href='/addresses?state=' + s
+                            )
+                                span= s
+                    hr
+                    
+                    div
+                        h5= 'Filter by country'
+                    each c in countries
+                        div
+                            a(
+                                href='/addresses?country=' + c
+                            )
+                                span= c
+                    if filter
+                        hr
+                        div
+                            a(href='/addresses')
+                                button(
+                                    class='btn btn-primary'
+                                ) View all records
+            
+            div.col-md-6
+                h5= 'Add a new record'
+                form(
+                        action='/addresses'
+                        method='post'
+                    )
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='text'
+                            class='form-control'
+                            name='name'
+                            placeholder='Record name'
+                        )
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='text'
+                            class='form-control'
+                            name='street'
+                            placeholder='Street'
+                        )
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='text'
+                            class='form-control'
+                            name='city'
+                            placeholder='City'
+                        )
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='text'
+                            class='form-control'
+                            name='country'
+                            placeholder='Country'
+                            id='country-input'
+                            onkeyup='checkCountry(this)'
+                        )
+                        div.card#country-suggestions
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='text'
+                            class='form-control'
+                            name='state'
+                            placeholder='State'
+                        )
+                    div(
+                        class='field'
+                    )
+                        input(
+                            type='submit'
+                            value='Add record'
+                            class='btn btn-success btn-block'
+                        )

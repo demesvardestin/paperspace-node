@@ -22,16 +22,6 @@ database. Record attributes are
 - state
 - country
 
-
-## Issues
-
-The feature allowing retrievial of cities/states associated with a particular
-country is currently not working. Given that this client would run on a secure
-connection, an external API url can only be reached with a jQuery ```$.get()``` request IF
-the url is also over HTTPS. Otherwise, the request will be rejected (as is the case
-with the link that was provided in the challenge instructions). I have not
-yet found a way around it.
-
 ## Installation and Testing
 
 Assuming you already have npm and node installed, you will firstly need to clone

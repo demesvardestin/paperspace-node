@@ -57,9 +57,13 @@ need to have MongoDB installed on your machine. You can do so by:
 - Run the necessary installation commands while inside the project folder
 
 After verifying that Mongo is up and running, install all dependencies with
-```npm install```, then boot up the server with ```node server.js```.
+```npm install```, then boot up the server with ```node server.js```
 
-Note: if your machine uses a port other than 3000 (such as 8080), you should
+Note: the url for browser preview may differ depending on the machine or IDE you
+use. some may only need localhos:3000, others (like me), use IDEs like Cloud9, and
+end up with an unnecessarily long url.
+
+Also note: if your machine uses a port other than 3000 (such as 8080), you should
 update the ```server.js``` file to reflect that difference.
 
 ## Unit tests
